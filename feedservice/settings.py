@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import os, os.path
 
 
@@ -85,6 +84,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_extensions',
     'feedservice.parse',
     'feedservice.webservice',
 )
@@ -138,6 +138,9 @@ EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.Email
 
 FETCH_TIMEOUT = int(os.getenv('FETCH_TIMEOUT', 20))
 
+# Need to monkey patch here or requests will fail
+import eventlet
+eventlet.monkey_patch()
 
 ### Sentry
 
@@ -156,5 +159,5 @@ except (ImportError, ValueError):
     pass
 
 
-import eventlet
-eventlet.monkey_patch()
+
+

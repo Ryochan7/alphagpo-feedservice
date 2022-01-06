@@ -233,7 +233,14 @@ def parse_header_list(values):
 
     values = [x.strip() for x in values.split(',')]
     for v in values:
-        v, q = v.split(';') if ';' in v else (v, 'q=1')
+        q = 'q=1'
+        if ';' in v:
+            tempv = v.split(';')
+            v, q = tempv[0], tempv[-1]
+        else:
+            v, q = (v, q)
+
+        #v, q = v.split(';') if ';' in v else (v, 'q=1')
         match = q_re.match(q)
         q = float(match.group(1)) if match else 1
         if v == '*':
