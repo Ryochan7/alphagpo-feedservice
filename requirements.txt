@@ -10,7 +10,7 @@ django-extensions
 dnspython==1.16.0
 envdir==1.0.1
 eventlet==0.26.0
-feedparser==6.0.0
+feedparser==6.0.2
 greenlet==0.4.16
 gunicorn==20.0.4
 html2text==2019.9.26
