@@ -29,7 +29,10 @@ class Feedparser(Parser):
         self.url = url
 
         headers = {
-            'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8'
+            'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
+            # Just use blank string for now. Some web servers will give 403
+            # if no user agent is present
+            "User-Agent": "",
         }
 
         try:
