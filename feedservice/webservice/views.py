@@ -6,6 +6,7 @@ import urllib.parse
 import time
 import email.utils
 import cgi
+import html
 import json
 
 from django.http import HttpResponse
@@ -99,7 +100,7 @@ class ParseView(View):
         else:
             content_type = 'text/html'
             pretty_json = json.dumps(podcasts, sort_keys=True, indent=4, cls=ObjectEncoder)
-            pretty_json = cgi.escape(pretty_json)
+            pretty_json = html.escape(pretty_json)
             response = render(request, 'pretty_response.html', {
                     'response': pretty_json,
                     'site': RequestSite(request),
