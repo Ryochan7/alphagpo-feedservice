@@ -27,6 +27,7 @@ class Feedparser(Parser):
     def __init__(self, url, resp, text_processor=None):
         super(Feedparser, self).__init__(url, resp)
         self.url = url
+        self.response_stream = None
 
         headers = {
             'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -38,6 +39,7 @@ class Feedparser(Parser):
         try:
             stream = requests.get(self.url, headers=headers,
                                   timeout=DEFAULT_TIMEOUT)
+            self.response_stream = stream
             self.feed = feedparser.parse(stream.content)
 
         except UnicodeEncodeError as e:
@@ -78,6 +80,7 @@ class Feedparser(Parser):
         feed.http_etag = self.get_etag()
         feed.flattr = self.get_flattr()
         feed.license = self.get_license()
+        feed.authentication = self.get_authentication()
 
         #feed.logo_data = self.get_logo_inline()
 
@@ -156,6 +159,17 @@ class Feedparser(Parser):
         parser = [FeedparserEpisodeParser(e, self.text_processor) for e in
                   self.feed.entries]
         return [p.get_episode() for p in parser]
+
+    def get_authentication(self):
+        if self.response_stream is None:
+            return None
+
+        feed_auth_code = None
+        temp_auth_flag = self.response_stream.headers.get("www-authenticate", None)
+        if temp_auth_flag:
+            feed_auth_code = temp_auth_flag.split(" ")[0]
+
+        return feed_auth_code
 
 
 class FeedparserEpisodeParser(object):
