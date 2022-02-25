@@ -31,9 +31,9 @@ class Feedparser(Parser):
 
         headers = {
             'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
-            # Just use blank string for now. Some web servers will give 403
-            # if no user agent is present
-            "User-Agent": "",
+            # Fake CURL user agent. Some web servers will give 403
+            # or 400 if no user agent is present
+            "User-Agent": "curl/7.54",
         }
 
         try:
