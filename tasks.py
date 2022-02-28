@@ -2,7 +2,7 @@ from invoke import task
 
 @task
 def start_project(ctx):
-    """Start new screen session for mygpo projec"""
+    """Start new screen session for feedservice project"""
     ctx.run("screen -dmS feedservice ./startapp_feedservice.sh")
 
 @task
