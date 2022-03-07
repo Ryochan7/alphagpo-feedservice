@@ -23,7 +23,7 @@ class FetchFeedException(Exception):
 def get_parser_classes():
     from feedservice.parse import feed, youtube, soundcloud, fm4, vimeo
     return (
-        youtube.YoutubeParser,
+        #youtube.YoutubeParser,
         vimeo.VimeoParser,
         soundcloud.SoundcloudParser,
         soundcloud.SoundcloudFavParser,
