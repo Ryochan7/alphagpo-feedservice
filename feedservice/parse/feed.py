@@ -31,9 +31,10 @@ class Feedparser(Parser):
 
         headers = {
             'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
-            # Fake CURL user agent. Some web servers will give 403
-            # or 400 if no user agent is present
-            "User-Agent": "curl/7.54",
+            # Custom user agent. Some web servers will give 403
+            # or 400 if no user agent is present. Found some web
+            # servers block curl.
+            "User-Agent": "gpodder-feedparser/1.0",
         }
 
         try:
