@@ -15,7 +15,7 @@ def bool_env(val, default):
 DEBUG = bool_env('MYGPOFS_DEBUG', True)
 
 ADMINS = (
-    ('Stefan Kögl', 'stefan@skoegl.net'),
+    ('Travis Nickles', 'ryochan7@protonmail.com'),
 )
 
 MANAGERS = ADMINS
