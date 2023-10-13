@@ -27,7 +27,7 @@ class ObjectEncoder(json.JSONEncoder):
                 continue
 
             val = getattr(obj, key)
-            if isinstance(val, collections.Callable):
+            if isinstance(val, collections.abc.Callable):
                 continue
 
             d[key] = getattr(obj, key)
